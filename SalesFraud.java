@@ -28,6 +28,15 @@ import javax.swing.JFrame;
         frame.add(new ChartPanel(barGraph));
         frame.setVisible(true);
     }
+    public static CategoryDataset arrToDataset(int[] arr, String seriesName) {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+     
+        for (int i = 0; i < arr.length; i++) {
+            dataset.addValue(arr[i], seriesName, Integer.toString(i+1));
+        }
+            
+        return dataset;
+    }
     public static int[] countNums (int[] arr, int arrSize) {
         int[] counts = new int[arrSize];
         
