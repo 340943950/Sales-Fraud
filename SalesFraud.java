@@ -28,4 +28,13 @@ import javax.swing.JFrame;
         frame.add(new ChartPanel(barGraph));
         frame.setVisible(true);
     }
+    public static int[] countNums (int[] arr, int arrSize) {
+        int[] counts = new int[arrSize];
+        
+        for (int num : arr) {
+            counts[num] += 1;
+        }
+
+        return counts;
+    }
  }
