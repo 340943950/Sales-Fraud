@@ -15,7 +15,10 @@ import javax.swing.JFrame;
 
  public class SalesFraudCopy {
      public static void main(String[] args) {
-        
+        int[] salesData = {0, 4, 9, 3, 5, 4, 6, 5, 8, 7, 4, 1, 3, 1, 3, 0, 6, 9, 4, 6};
+        int[] counts = countNums(salesData, 10);
+        CategoryDataset dataset = arrToDataset(counts, "Counts");
+        createChart("First Digits in Sales Data", "First Digit", "Count", dataset);
      }
 
      /**
