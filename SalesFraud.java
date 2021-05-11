@@ -15,10 +15,12 @@ import javax.swing.JFrame;
 
  public class SalesFraud {
      public static void main(String[] args) {
-        int[] salesData = {0, 4, 9, 3, 5, 4, 6, 5, 8, 7, 4, 1, 3, 1, 3, 0, 6, 9, 4, 6};
-        int[] counts = countNums(salesData, 10);
-        CategoryDataset dataset = arrToDataset(counts, "Counts");
+        int[] arr1 = {4, 9, 3, 5, 4, 6, 5, 8, 7, 4, 1, 3, 1, 3, 6, 9, 4, 6};
+        int[] arr2 = countNums(arr1, 9);
+        reportFraud(arr2);
+        CategoryDataset dataset = arrToDataset(arr2, "Counts");
         createChart("First Digits in Sales Data", "First Digit", "Count", dataset);
+        printArray(arr2);
      }
 
      /**
@@ -77,5 +79,46 @@ import javax.swing.JFrame;
         }
 
         return counts;
+    }
+
+    /**
+     * This method checks if the first digit is a one from 29 to 32 percent of the time
+     * 
+     * If it does occur from 29 to 32 percent of the time fraud likely didn't occur, otherwise may have occurred
+     * 
+     * @param arr   The array with the counts of each first digit
+     */
+    public static void reportFraud (int[] arr) {
+        // The first element in the array is the frequency of the first digit occurring
+        // According to Benford's Law, if the frequency is between 29% and 32% then fraud didn't occur
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+
+        double frequency = arr[0]/sum;
+        if (frequency >= 0.29 && frequency <= 0.32) {
+            System.out.println("\nIt is likely that fraud didn't occur in this set of sales data.");
+        }
+        else {
+            System.out.println("\nThere is a chance that fraud occurred in this set of sales data.");
+        }
+    }
+
+    /**
+     * This method prints out first digit counts wiht headers in table foramt
+     * 
+     * @param arr   The array with the results to be printed
+     */
+    public static void printArray (int[] arr) {
+        System.out.println("\nFirst Digit Counts:");
+        for (int i = 1; i <= 9; i++) {
+            System.out.format("%5s", i);
+        }
+        System.out.println("\n  =============================================");
+        for (int j = 0; j < arr.length; j++) {
+            System.out.format("%5s", arr[j]);
+        }
+        System.out.println("\n");
     }
  }
