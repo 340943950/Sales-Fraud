@@ -43,6 +43,7 @@ import java.util.ArrayList;
                 verifyFile = false;
             }
         } while(!(verifyFile));
+        reader.close();
         
         int[] salesData = getSalesData(salesFile);
         int[] counts = countNums(salesData, 9);
