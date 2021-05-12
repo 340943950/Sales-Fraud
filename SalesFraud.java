@@ -1,6 +1,6 @@
 /*
  * Date: May 6, 2021
- * Name: Adarsh Padalia and Iza Kurbanova
+ * Names: Adarsh Padalia and Iza Kurbanova
  * Teacher: Mr. Ho
  * Description: Checking for sales fraud in a set of sales data using Benford's Law
  * */
@@ -17,31 +17,19 @@ import java.io.*;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
 
- public class SalesFraud {
-     public static void main(String[] args) {
+public class SalesFraud {
+    public static void main(String[] args) {
         Scanner reader = new Scanner (System.in); // Initializing Scanner
-        boolean verifyFile = false;
+        boolean success = false;
         String salesFile;
         do{
             // Loops if user input is wrong
             // Prompts user for file
-            System.out.println("\nPlease enter the full file path and name of the file with the sales you would like to verify (EX:C:\\Users\\John\\Desktop\\ICS3U\\sales.csv)");
+            System.out.println("Please enter the full file path and name of the file with the sales you would like to verify (EX:C:\\Users\\John\\Desktop\\ICS3U\\sales.csv)");
             salesFile = reader.nextLine(); // User file input
-
-            // Verifys user input
-            System.out.println("Please confirm that your file input is correct (YES or NO)");
-            String fileConfirmation = reader.nextLine();
-            if(fileConfirmation.equalsIgnoreCase("yes")){
-                verifyFile = true;
-            }
-            else if(fileConfirmation.equalsIgnoreCase("no")){
-                verifyFile = false;
-            }
-            else{
-                System.out.println("Your confirmation input was invalid. We will assume it was NO");
-                verifyFile = false;
-            }
-        } while(!(verifyFile));
+            File f = new File(salesFile);
+            success = f.exists(); // Checking if the file exists (If yes, success is true and it does not loop, if no it loops)
+        } while(!(success));
         reader.close();
         
         int[] salesData = getSalesData(salesFile);
