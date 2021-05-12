@@ -122,8 +122,8 @@ import java.text.DecimalFormat;
     public static void reportFraud (double[] arr) {
         // The first element in the array is the frequency of the first digit occurring
         // According to Benford's Law, if the frequency is between 29% and 32% then fraud didn't occur
-
-        if (arr[0] >= 0.29 && arr[0] <= 0.32) {
+        // All frequencies are expressed as percentages (decimal times 100)
+        if (arr[0] >= 29 && arr[0] <= 32) {
             System.out.println("\nIt is likely that fraud didn't occur in this set of sales data.");
         }
         else {
